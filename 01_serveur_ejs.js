@@ -64,7 +64,11 @@ fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (er
 
  });
 
- res.end(JSON.stringify(reponse));
+console.log(reponse.prenom);
+ //res.end(JSON.stringify(reponse));
+ //reponse = JSON.stringify(reponse);
+
+ res.render('gabarit_5.ejs', {membreAjoute: reponse});
 
 })
 
