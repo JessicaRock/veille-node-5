@@ -10,7 +10,6 @@ app.set('view engine', 'ejs'); // générateur de template
 
 app.get('/formulaire', function (req, res) {
  console.log(__dirname);
-
  res.render('gabarit_4.ejs');
 
 })
@@ -18,8 +17,6 @@ app.get('/formulaire', function (req, res) {
 app.get('/membres', (req, res) => {
  fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
 	let json = JSON.parse(data);
-	//res.end(transforme_en_tableau(json));
-
    	res.render('gabarit_2.ejs', {membres: json});
 
  });
@@ -28,7 +25,6 @@ app.get('/membres', (req, res) => {
 
 app.get('/', (req, res) => {
 	console.log('accueil')
-	//res.end('<h1>Accueil</h1>')
    	res.render('gabarit_3.ejs');
 })
 
