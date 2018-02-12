@@ -19,8 +19,11 @@ app.get('/formulaire', function (req, res) {
 
 app.get('/membres', (req, res) => {
  fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
- let json = JSON.parse(data);
- res.end(transforme_en_tableau(json));
+	let json = JSON.parse(data);
+	//res.end(transforme_en_tableau(json));
+
+   	res.render('gabarit_2.ejs', {membres: json});
+
  });
 })
 
