@@ -29,8 +29,9 @@ app.get('/membres', (req, res) => {
 
 
 app.get('/', (req, res) => {
- console.log('accueil')
- res.end('<h1>Accueil</h1>')
+	console.log('accueil')
+	//res.end('<h1>Accueil</h1>')
+   	res.render('gabarit_3.ejs');
 })
 
 
