@@ -11,10 +11,8 @@ app.set('view engine', 'ejs'); // générateur de template
 app.get('/formulaire', function (req, res) {
  console.log(__dirname);
 
- fs.readFile( __dirname + "/public/html/" + "01_form.html", 'utf8', function (err, data) {
- console.log( data );
- res.end( data );
- });
+ res.render('gabarit_4.ejs');
+
 })
 
 app.get('/membres', (req, res) => {
@@ -36,7 +34,7 @@ app.get('/', (req, res) => {
 
 
 
-
+// RETIRER DÉFINITION VARIABLE ET AJOUTER let DIRECTEMENT À L'ASSIGNATION
 let reponse = {};
 
 app.get('/traiter_get', function (req, res) {
