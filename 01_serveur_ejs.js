@@ -10,14 +10,14 @@ app.set('view engine', 'ejs'); // générateur de template
 
 app.get('/formulaire', function (req, res) {
  console.log(__dirname);
- res.render('gabarit_4.ejs');
+ res.render('formulaire.ejs');
 
 })
 
 app.get('/membres', (req, res) => {
  fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
 	let json = JSON.parse(data);
-   	res.render('gabarit_2.ejs', {membres: json});
+   	res.render('membres.ejs', {membres: json});
 
  });
 })
@@ -25,7 +25,7 @@ app.get('/membres', (req, res) => {
 
 app.get('/', (req, res) => {
 	console.log('accueil')
-   	res.render('gabarit_3.ejs');
+   	res.render('accueil.ejs');
 })
 
 
@@ -58,7 +58,7 @@ fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (er
 
  });
 
- res.render('gabarit_5.ejs', {membreAjoute: reponse});
+ res.render('nouveauMembre.ejs', {membreAjoute: reponse});
 
 })
 
