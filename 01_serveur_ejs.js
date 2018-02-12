@@ -34,8 +34,6 @@ app.get('/', (req, res) => {
 
 
 
-// RETIRER DÉFINITION VARIABLE ET AJOUTER let DIRECTEMENT À L'ASSIGNATION
-let reponse = {};
 
 app.get('/traiter_get', function (req, res) {
 
@@ -43,7 +41,7 @@ console.log('la route /traiter_get')
 
 
 // on utilise l'objet req.query pour récupérer les données GET
- reponse = {
+ let reponse = {
  prenom:req.query.prenom,
  nom:req.query.nom,
  telephone:req.query.telephone,
@@ -64,35 +62,9 @@ fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (er
 
  });
 
-console.log(reponse.prenom);
- //res.end(JSON.stringify(reponse));
- //reponse = JSON.stringify(reponse);
-
  res.render('gabarit_5.ejs', {membreAjoute: reponse});
 
 })
-
-
-const transforme_en_tableau = (collection) =>
-{
-	let chaine = '<table>';
-	for (elm of collection) {
-
-		chaine += '<tr>';
-
-		for(p in elm) {
-			chaine += '<td>' + p + ' : ' + elm[p] + '</td>';
-		}
-
-		chaine += '</tr>';
-
-	}
-
-	chaine += '</table>';
-	return chaine;
-}
-
-
 
  var server = app.listen(8081, function () {
  var host = server.address().address
