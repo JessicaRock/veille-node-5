@@ -29,6 +29,15 @@ body form input:focus {
   border: 2px solid #b2580d;
   outline: none;
 }
+body ul {
+  padding: 30px 60px;
+  border: 3px solid #b2580d;
+}
+body ul li {
+  color: #ff8825;
+  font-family: Roboto;
+  font-size: 20px;
+}
 .tableau {
   border-collapse: collapse;
 }
