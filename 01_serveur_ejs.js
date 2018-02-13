@@ -17,12 +17,6 @@ app.get('/formulaire', function (req, res) {
 })
 
 app.get('/membres', (req, res) => {
- /*fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
-	let json = JSON.parse(data);
-   	res.render('membres.ejs', {membres: json});
-
- });*/
-
 	var cursor = db.collection('adresse').find().toArray(function(err, resultat){
 		 if (err) return console.log(err)
 		 console.log('util = ' + util.inspect(resultat));
@@ -43,34 +37,7 @@ app.get('/', (req, res) => {
 
 app.get('/ajouter', function (req, res) {
 
-console.log('la route /ajouter')
-
-
-// on utilise l'objet req.query pour récupérer les données GET
-/* let reponse = {
- prenom:req.query.prenom,
- nom:req.query.nom,
- telephone:req.query.telephone,
- courriel:req.query.courriel
- };
-
-
-fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
-	if (err) throw err;
-	let tab = JSON.parse(data);
-	tab.push(reponse);
-	let json = JSON.stringify(tab);
-
-	 fs.writeFile(__dirname + "/public/data/" + "adresses.json", json, function(err, data) {
-		if (err) throw err;
-	 	console.log('Terminé');
-	 })
-
- });
-
- res.render('nouveauMembre.ejs', {membreAjoute: reponse});*/
-
-
+ console.log('la route /ajouter')
 
  db.collection('adresse').save(req.query, (err, result) => {
  if (err) return console.log(err)
@@ -83,11 +50,6 @@ fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (er
 
 })
 
- /*var server = app.listen(8081, function () {
- var host = server.address().address
- var port = server.address().port
- 
- console.log("Exemple l'application écoute sur http://%s:%s", host, port)*/
 
  let db // variable qui contiendra le lien sur la BD
 
