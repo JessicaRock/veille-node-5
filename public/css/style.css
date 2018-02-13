@@ -3,13 +3,31 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
 }
 body h1 {
   font-family: Open Sans;
   font-weight: bold;
   font-size: 45px;
   color: #0097b2;
+}
+body form {
+  border: 3px solid #b2580d;
+  font-family: Open Sans;
+  font-size: 20px;
+  padding: 50px;
+  color: #b2580d;
+}
+body form input[type='text'] {
+  font-family: Roboto;
+  font-size: 20px;
+  background-color: #ff9640;
+  color: #c9e3e8;
+  margin-bottom: 20px;
+  border: 2px solid #ff8825;
+}
+body form input:focus {
+  border: 2px solid #b2580d;
+  outline: none;
 }
 .tableau {
   border-collapse: collapse;

@@ -17,6 +17,28 @@ body {
 		font-size: 45px;
 		color: @bleuFonce;
 	}
+
+	form {
+		border: 3px solid @orangeFonce;
+		font-family: Open Sans;
+		font-size: 20px;
+		padding: 50px;
+		color: @orangeFonce;
+
+		input[type='text'] {
+			font-family: Roboto;
+			font-size: 20px;
+			background-color: @orangePale;
+			color: @bleu;
+			margin-bottom: 20px;
+			border: 2px solid @orange;
+		}
+
+		input:focus {
+			border: 2px solid @orangeFonce;
+			outline: none;
+		}
+	}
 }
 
 .tableau {
