@@ -1,6 +1,8 @@
 const express = require('express');
 const fs = require("fs");
 const app = express();
+const MongoClient = require('mongodb').MongoClient; // le pilote MongoDB
+ var util = require("util");
 app.use(express.static('public'));
 
 
@@ -15,11 +17,19 @@ app.get('/formulaire', function (req, res) {
 })
 
 app.get('/membres', (req, res) => {
- fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
+ /*fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
 	let json = JSON.parse(data);
    	res.render('membres.ejs', {membres: json});
 
- });
+ });*/
+
+	var cursor = db.collection('adresse').find().toArray(function(err, resultat){
+		 if (err) return console.log(err)
+		 console.log('util = ' + util.inspect(resultat));
+		 // transfert du contenu vers la vue gabarit.ejs (renders)
+		 // affiche le contenu de la BD
+		 res.render('membres.ejs', {membres: resultat})
+	})
 })
 
 
@@ -31,13 +41,13 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/traiter_get', function (req, res) {
+app.get('/ajouter', function (req, res) {
 
-console.log('la route /traiter_get')
+console.log('la route /ajouter')
 
 
 // on utilise l'objet req.query pour récupérer les données GET
- let reponse = {
+/* let reponse = {
  prenom:req.query.prenom,
  nom:req.query.nom,
  telephone:req.query.telephone,
@@ -58,14 +68,35 @@ fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (er
 
  });
 
- res.render('nouveauMembre.ejs', {membreAjoute: reponse});
+ res.render('nouveauMembre.ejs', {membreAjoute: reponse});*/
+
+
+
+ db.collection('adresse').save(req.query, (err, result) => {
+ if (err) return console.log(err)
+ console.log('sauvegarder dans la BD')
+ res.redirect('/membres')
 
 })
 
- var server = app.listen(8081, function () {
+
+
+})
+
+ /*var server = app.listen(8081, function () {
  var host = server.address().address
  var port = server.address().port
  
- console.log("Exemple l'application écoute sur http://%s:%s", host, port)
+ console.log("Exemple l'application écoute sur http://%s:%s", host, port)*/
+
+ let db // variable qui contiendra le lien sur la BD
+
+MongoClient.connect('mongodb://127.0.0.1:27017', (err, database) => {
+ if (err) return console.log(err)
+ db = database.db('carnet_adresse')
+// lancement du serveur Express sur le port 8081
+ app.listen(8081, () => {
+ console.log('connexion à la BD et on écoute sur le port 8081')
+ })
 
 })
